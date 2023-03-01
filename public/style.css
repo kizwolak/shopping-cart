@@ -24,13 +24,16 @@
 }
 
 .cart {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
     position: absolute;
     top: 40%;
     right: 20em;
+    height: 1em;
 }
-
-.cart > img {
-    height: 2em;
+.basket-img > * {
+    height: 1em;
 }
 
 .itemsArea {

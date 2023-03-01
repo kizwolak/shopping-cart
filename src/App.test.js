@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
 import userEvent from '@testing-library/user-event';
 import App from './App';
-import Shop from './Shop';
+import Shop from './components/Shop';
 
 describe('Shop component', () => {
   it('Cart quantity updates', () => {
