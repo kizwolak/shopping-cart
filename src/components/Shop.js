@@ -19,6 +19,7 @@ export default function Shop(props) {
     const basket = props.basket
     const list = props.list
     const generateList = props.handleGenerate
+    const handleItemClick = props.handleItemClick
     return (
         <div className="main">
             <Navbar basket={basket}/>

@@ -1,13 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import App from "./App";
+import Shop from "./components/Shop";
 import Basket from "./components/Basket";
 import Item from "./components/Item";
 
 export default function RouteSwitch() {
+    const [itemsInBasket, setItemsInBasket] = useState([]);
+    console.log(itemsInBasket)
     const [basket, setBasket] = React.useState(0)
-    function handleItemClick() {
+    function handleItemClick(e) {
       setBasket(prevValue => prevValue + 1);
+      console.log(e.target.previousSibling.previousSibling.previousSibling.getAttribute('src'))
+      setItemsInBasket(prevBasket => [...prevBasket, 
+        {
+            img: e.target.previousSibling.previousSibling.previousSibling.getAttribute('src'),
+            title: e.target.previousSibling.previousSibling.textContent
+        }])
     }
     const [list, setList] = React.useState([
       {
@@ -22,8 +30,8 @@ export default function RouteSwitch() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<App basket={basket} handleClick={handleItemClick} list={list} handleGenerate={generateList}/>} />
-                <Route path="/basket" element={<Basket basket={basket}/>} />
+                <Route path="/" element={<Shop basket={basket} handleClick={handleItemClick} list={list} handleGenerate={generateList} itemsInBasket={itemsInBasket} handleBasket={setItemsInBasket}/>} />
+                <Route path="/basket" element={<Basket basket={basket} itemsInBasket={itemsInBasket}/>} />
             </Routes>
         </BrowserRouter>
     )
