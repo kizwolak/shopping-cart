@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Shop from "./components/Shop";
 import Basket from "./components/Basket";
 import Item from "./components/Item";
+import ItemDisplay from "./components/ItemDisplay";
 
 export default function RouteSwitch() {
     const [itemsInBasket, setItemsInBasket] = useState([]);
@@ -17,6 +18,19 @@ export default function RouteSwitch() {
             title: e.target.parentNode.parentNode.querySelector('.itemName').textContent,
             amount: e.target.parentNode.querySelector('input').value,
         }])
+    }
+    function handleItemDisplayClick(e) {
+      setBasket(prevValue => prevValue + 1);
+      console.log(e.target.parentNode.parentNode.querySelector('.itemPrice').textContent)
+      const priceToBeSet = e.target.parentNode.parentNode.querySelector('.itemPrice').textContent
+      setItemsInBasket(prevBasket => [...prevBasket, 
+        {
+            img: e.target.parentNode.parentNode.parentNode.parentNode.querySelector('img').getAttribute('src'),
+            title: e.target.parentNode.parentNode.parentNode.querySelector('h1').textContent,
+            amount: e.target.parentNode.parentNode.querySelector('input').value,
+            price: priceToBeSet.substring(0, priceToBeSet.indexOf(' '))
+        }])
+        e.target.parentNode.parentNode.querySelector('input').value = 0;
     }
     const [list, setList] = React.useState([
       {
@@ -84,6 +98,7 @@ export default function RouteSwitch() {
             <Routes>
                 <Route path="/" element={<Shop basket={basket} handleClick={handleItemClick} list={list} handleGenerate={generateList} itemsInBasket={itemsInBasket} handleBasket={setItemsInBasket}/>} />
                 <Route path="/basket" element={<Basket basket={basket} itemsInBasket={itemsInBasket}/>} />
+                <Route path="/Chocolate Ship" element={<ItemDisplay item={list[0]} basket={basket} onClick={handleItemDisplayClick}/>} />
             </Routes>
         </BrowserRouter>
     )

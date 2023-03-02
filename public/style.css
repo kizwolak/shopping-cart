@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400&display=swap');
 * {
     margin: 0;
     padding: 0;
@@ -119,4 +120,29 @@ body {
 
 .basket-item > img {
     width: 10em;
+}
+
+.item-display {
+    font-family: 'Poppins', sans-serif;
+    margin: 5em;
+    display: flex;
+    justify-content: center;
+    gap: 3em;
+}
+
+.item-display > img {
+    width: 15em;
+    height: 15em;
+}
+
+.item-display-desc {
+    width: 50%;
+}
+
+.basket-interaction {
+    margin-top: 1em;
+}
+
+.basket-interaction > .itemPrice {
+    font-size: 2em;
 }
