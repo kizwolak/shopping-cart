@@ -1,5 +1,4 @@
 import React from "react";
-import Item from "./Item";
 import Navbar from "./Navbar";
 
 export default function Shop(props) {
@@ -17,9 +16,7 @@ export default function Shop(props) {
     //     return <Item name={item.name} image={item.image} desc={item.desc} onClick={handleItemClick} key={item.name}/>
     // })
     const basket = props.basket
-    const list = props.list
     const generateList = props.handleGenerate
-    const handleItemClick = props.handleItemClick
     return (
         <div className="main">
             <Navbar basket={basket}/>

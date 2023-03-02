@@ -8,6 +8,7 @@ export default function Basket(props) {
             <div className="basket-item" key={item.name}>
                 <img src={item.img} alt='item' />
                 <h4>{item.title}</h4>
+                <h2>{item.amount}</h2>
             </div>
         )
     })

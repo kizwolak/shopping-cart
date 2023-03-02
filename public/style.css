@@ -4,6 +4,14 @@
     box-sizing: border-box;
 }
 
+body {
+    height: 100%;
+    background: linear-gradient(180deg, rgba(34,193,195,1) 26%, rgba(253,187,45,1) 100%);
+    margin: 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
 .navbar {
     display: flex;
     flex-direction: row;
@@ -37,9 +45,12 @@
 }
 
 .itemsArea {
-    width: 60%;
     margin-left: auto;
     margin-top: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
 }
 
 .item {
@@ -48,17 +59,19 @@
     flex-direction: column;
     align-items: center;
     width: 12em;
-    height: 15em;
+    height: 14em;
     font-family: 'Poppins', sans-serif;
     font-weight: 200;
     font-size: 1.5em;
     background: linear-gradient(0deg, rgba(230,230,230,1) 0%, rgba(254,191,57,0.87718837535014) 64%);
     overflow: hidden;
     text-overflow: ellipsis;
+    border-radius: 1em;
 }
 
 .item > img {
     width: 10em;
+    height: 5em;
 }
 
 .itemName {
@@ -70,14 +83,29 @@
     text-overflow:ellipsis;
     overflow:hidden;
     display: -webkit-box !important;
-    -webkit-line-clamp: 4;
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     white-space: normal;
-    height: 10em;
+    height: 35%;
     width: 100%;
 }
 
-.item > button {
+.itemPrice {
+    font-size: 0.5em;
+    font-weight: 100;
+}
+
+.item-amount {
+    height: fit-content;
+    display: flex;
+    gap: 1em;
+}
+
+.item-amount input {
+    width: 5em;
+}
+
+.item-amount > button {
     height: 1.5em;
     width: 6em;
     border: none;
