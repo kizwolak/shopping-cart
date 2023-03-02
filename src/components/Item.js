@@ -6,9 +6,9 @@ export default function Item(props) {
             <img src={props.image} alt="Product" />
             <p className="itemName">{props.name}</p>
             <p className="itemDesc">{props.desc}</p>
-            <p className="itemPrice">{props.price}</p>
+            <p className="itemPrice">{props.price} USD</p>
             <div className="item-amount">
-                <input type="number" min='1' required/>
+                <input type="number" min='1' required id="amount-input"/>
                 <button onClick={props.onClick}>Add item</button>
             </div>
         </div>
