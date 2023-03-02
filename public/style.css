@@ -13,6 +13,10 @@ body {
     background-attachment: fixed;
 }
 
+a {
+    text-decoration: none;
+}
+
 .navbar {
     display: flex;
     align-items: center;
@@ -116,6 +120,18 @@ body {
     border: none;
     border-radius: 1em;
     background: linear-gradient(180deg, rgba(34,193,195,0.36458333333333337) 0%, rgba(253,187,45,0.6530987394957983) 100%);
+}
+
+.items {
+    display: flex;
+    flex-direction: column;
+    margin: 5em;
+    gap: 2em;
+}
+
+.basket-item {
+    display: flex;
+    gap: 3em;
 }
 
 .basket-item > img {

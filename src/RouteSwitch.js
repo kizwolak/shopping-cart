@@ -7,22 +7,29 @@ import ItemDisplay from "./components/ItemDisplay";
 
 export default function RouteSwitch() {
     const [itemsInBasket, setItemsInBasket] = useState([]);
-    console.log(itemsInBasket)
     const [basket, setBasket] = React.useState(0)
+    const [totalAmount, setTotalAmount] = React.useState(0)
     function handleItemClick(e) {
+      console.log(e.target.parentNode.parentNode)
       setBasket(prevValue => prevValue + 1);
-      console.log(e.target.parentNode.parentNode.querySelector('.itemName').textContent)
+      const priceToBeSet = e.target.parentNode.parentNode.querySelector('.itemPrice').textContent
+      const amount = e.target.parentNode.querySelector('input').value
       setItemsInBasket(prevBasket => [...prevBasket, 
         {
             img: e.target.parentNode.parentNode.querySelector('img').getAttribute('src'),
             title: e.target.parentNode.parentNode.querySelector('.itemName').textContent,
-            amount: e.target.parentNode.querySelector('input').value,
+            amount: amount,
+            price: priceToBeSet.substring(0, priceToBeSet.indexOf(' '))
         }])
+        setTotalAmount(prevAmount => prevAmount + (priceToBeSet.substring(0, priceToBeSet.indexOf(' ')) * amount))
+        e.target.parentNode.parentNode.querySelector('input').value = 0;
     }
     function handleItemDisplayClick(e) {
       setBasket(prevValue => prevValue + 1);
       console.log(e.target.parentNode.parentNode.querySelector('.itemPrice').textContent)
       const priceToBeSet = e.target.parentNode.parentNode.querySelector('.itemPrice').textContent
+      const amount = e.target.parentNode.parentNode.querySelector('input').value
+      console.log(priceToBeSet.substring(0, priceToBeSet.indexOf(' ')) * amount)
       setItemsInBasket(prevBasket => [...prevBasket, 
         {
             img: e.target.parentNode.parentNode.parentNode.parentNode.querySelector('img').getAttribute('src'),
@@ -30,6 +37,8 @@ export default function RouteSwitch() {
             amount: e.target.parentNode.parentNode.querySelector('input').value,
             price: priceToBeSet.substring(0, priceToBeSet.indexOf(' '))
         }])
+        console.log(priceToBeSet.substring(0, priceToBeSet.indexOf(' ')) * amount)
+        setTotalAmount(prevAmount => prevAmount + (priceToBeSet.substring(0, priceToBeSet.indexOf(' ')) * amount))
         e.target.parentNode.parentNode.querySelector('input').value = 0;
     }
     const [list, setList] = React.useState([
@@ -97,8 +106,8 @@ export default function RouteSwitch() {
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<Shop basket={basket} handleClick={handleItemClick} list={list} handleGenerate={generateList} itemsInBasket={itemsInBasket} handleBasket={setItemsInBasket}/>} />
-                <Route path="/basket" element={<Basket basket={basket} itemsInBasket={itemsInBasket}/>} />
-                <Route path="/Chocolate Ship" element={<ItemDisplay item={list[0]} basket={basket} onClick={handleItemDisplayClick}/>} />
+                <Route path="/basket" element={<Basket basket={basket} itemsInBasket={itemsInBasket} totalAmount={totalAmount}/>} />
+                <Route path="/Chocolate Ship" element={<ItemDisplay item={list[0]} basket={basket} onClick={handleItemDisplayClick} totalAmount={totalAmount} />} />
             </Routes>
         </BrowserRouter>
     )

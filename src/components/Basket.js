@@ -7,8 +7,10 @@ export default function Basket(props) {
         return (
             <div className="basket-item" key={item.name}>
                 <img src={item.img} alt='item' />
-                <h4>{item.title}</h4>
-                <h2>{item.amount}</h2>
+                <div className="item-in-basket">
+                    <h4>{item.title}</h4>
+                    <h2>Quantity: {item.amount}</h2>
+                </div>
             </div>
         )
     })
@@ -18,6 +20,7 @@ export default function Basket(props) {
             <div className="items">
                 {generateItems}
             </div>
+            <p>Total: {props.totalAmount} USD</p>
         </div>
     )
 }
