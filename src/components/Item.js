@@ -11,7 +11,7 @@ export default function Item(props) {
             <p className="itemDesc">{props.desc}</p>
             <p className="itemPrice">{props.price} USD</p>
             <div className="item-amount">
-                <input type="number" min='1' required id="amount-input"/>
+                <input type="number" min='1' required id="amount-input" placeholder="0"/>
                 <button onClick={props.onClick}>Add item</button>
             </div>
         </div>

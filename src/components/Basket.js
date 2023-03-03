@@ -15,12 +15,14 @@ export default function Basket(props) {
         )
     })
     return (
-        <div className="basket-main">
-            <Navbar basket = {props.basket}/>
-            <div className="items">
-                {generateItems}
+        <>
+            <div className="basket-main">
+                <Navbar basket = {props.basket}/>
+                <div className="items">
+                    {generateItems}
+                </div>
+                <p className="basket-total">Total: {props.totalAmount} USD</p>
             </div>
-            <p>Total: {props.totalAmount} USD</p>
-        </div>
+        </>
     )
 }
