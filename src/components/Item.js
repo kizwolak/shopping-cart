@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 export default function Item(props) {
     const [items, setItems] = React.useState(props.itemsInBasket)
     React.useEffect(() => {setItems(props.itemsInBasket)}, [props.itemsInBasket])
-    console.log(items);
     const [amount, setAmount] = React.useState(1);
     const [isInBasket, setIsInBasket] = React.useState(false);
     function handleChange(e) {
@@ -12,6 +11,7 @@ export default function Item(props) {
         console.log(setAmount);
     }
     function handleSubmit(e) {
+        console.log(items);
         const title = e.target.parentNode.parentNode.querySelector(".itemName").textContent
         for (let i = props.itemsInBasket.length - 1; i >= 0; --i) {
             if (props.itemsInBasket[i].title === title) {
@@ -34,6 +34,10 @@ export default function Item(props) {
                     props.onClick(e);
                     handleSubmit(e);
                 }}>Add item</button>
+            </div>
+            <div className="plus-minus-buttons">
+                <div onClick={() => setAmount(prevAmount => prevAmount + 1)}>+</div>
+                <div onClick={() => setAmount(prevAmount => prevAmount - 1)}>-</div>
             </div>
             {amount < 1 && <p className="show">You need to insert at least 1 item into the basket!</p>}
             {isInBasket && <p className="show">Item readded to basket.</p>}

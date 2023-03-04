@@ -77,6 +77,9 @@ export default function RouteSwitch() {
     );
     e.target.parentNode.parentNode.querySelector("input").value = 0;
   }
+  function handleDelete(e) {
+    
+  }
   const [list, setList] = React.useState([
     {
       name: "Chocolate Ship",

@@ -119,6 +119,32 @@ a {
     width: 5em;
 }
 
+.plus-minus-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3em;
+}
+
+.plus-minus-buttons > * {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1em;
+}
+
+.plus-minus-buttons > *:hover {
+    border-radius: 50%;
+    height: 25px;
+    width: 25px;
+    background-color: blueviolet;
+    -webkit-transition: background-color 0.3s ease-in;
+    -moz-transition: background-color 0.3s ease-in;
+    -ms-transition: background-color 0.3s ease-in;
+    -o-transition: background-color 0.3s ease-in;
+    transition: background-color 0.3s ease-in;
+}
+
 .item-amount > button {
     height: 1.5em;
     width: 6em;
