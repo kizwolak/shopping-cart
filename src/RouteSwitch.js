@@ -14,8 +14,9 @@ export default function RouteSwitch() {
     if (amount < 1) {
       const test = document.createElement('p')
       test.innerHTML = 'test'
-      const test1 = e.parentNode.parentNode.querySelector('.itemAmount')
-      test1.after(test)
+      test.classList = 'hide'
+      e.target.parentNode.parentNode.appendChild(test);
+      test.classList = 'show'
     };
     console.log(e.target.parentNode.parentNode);
     setBasket((prevValue) => prevValue + 1);

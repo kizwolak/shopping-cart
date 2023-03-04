@@ -8,7 +8,7 @@
 
 body {
     height: 100%;
-    background: linear-gradient(180deg, rgba(34,193,195,1) 26%, rgba(253,187,45,1) 100%);
+    background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 85%);
     margin: 0;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -36,7 +36,7 @@ a {
     font-weight: 100;
     font-size: 5em;
     color: white;
-    background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
+    background: linear-gradient(180deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
 }
 
 .cart {
@@ -173,4 +173,20 @@ a {
 .basket-total {
     margin-left: 10em;
     font-size: 2em;
+}
+
+.hide {
+    opacity: 0;
+    transition: opacity 1s linear;
+    -webkit-transition: opacity 1s linear;
+    -moz-transition: opacity 1s linear;
+    -o-transition: opacity 1s linear;
+}
+
+.show {
+    opacity: 1;
+    transition: opacity 1s linear;
+    -webkit-transition: opacity 1s linear;
+    -moz-transition: opacity 1s linear;
+    -o-transition: opacity 1s linear;
 }
