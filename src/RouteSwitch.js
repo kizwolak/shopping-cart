@@ -78,7 +78,14 @@ export default function RouteSwitch() {
     e.target.parentNode.parentNode.querySelector("input").value = 0;
   }
   function handleDelete(e) {
-    
+    const title = e.target.parentNode.querySelector('h4').textContent
+    console.log(title);
+    const updatedArray = itemsInBasket.filter(function ( obj ) {
+      console.log(obj.title);
+      return obj.title !== title;
+    })
+    setItemsInBasket(updatedArray)
+    setBasket((prevValue) => prevValue - 1);
   }
   const [list, setList] = React.useState([
     {
@@ -174,6 +181,7 @@ export default function RouteSwitch() {
               basket={basket}
               itemsInBasket={itemsInBasket}
               totalAmount={totalAmount}
+              handleDelete={handleDelete}
             />
           }
         />

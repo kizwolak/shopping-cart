@@ -11,7 +11,6 @@ export default function Item(props) {
         console.log(setAmount);
     }
     function handleSubmit(e) {
-        console.log(items);
         const title = e.target.parentNode.parentNode.querySelector(".itemName").textContent
         for (let i = props.itemsInBasket.length - 1; i >= 0; --i) {
             if (props.itemsInBasket[i].title === title) {
@@ -29,7 +28,7 @@ export default function Item(props) {
             <p className="itemDesc">{props.desc}</p>
             <p className="itemPrice">{props.price} USD</p>
             <div className="item-amount">
-                <input type="number" min='1' id="amount-input" value={amount} onChange={handleChange}/>
+                <input type="text" min='1' id="amount-input" value={amount} onChange={handleChange}/>
                 <button onClick={(e) => {
                     props.onClick(e);
                     handleSubmit(e);
