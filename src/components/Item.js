@@ -12,8 +12,9 @@ export default function Item(props) {
     }
     function handleSubmit(e) {
         const title = e.target.parentNode.parentNode.querySelector(".itemName").textContent
-        for (let i = props.itemsInBasket.length - 1; i >= 0; --i) {
-            if (props.itemsInBasket[i].title === title) {
+        console.log(items);
+        for (let i = items.length - 1; i >= 0; --i) {
+            if (items[i].title === title) { 
                 setIsInBasket(true);
             } 
             setTimeout(setIsInBasket(false), 2000)

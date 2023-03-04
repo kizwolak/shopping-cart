@@ -7,9 +7,11 @@ import ItemDisplay from "./components/ItemDisplay";
 
 export default function RouteSwitch() {
   const [itemsInBasket, setItemsInBasket] = useState([]);
+  const basketCopy = itemsInBasket;
   const [basket, setBasket] = React.useState(0);
   const [totalAmount, setTotalAmount] = React.useState(0);
   function handleItemClick(e) {
+    let existsInBasket = false;
     const amount = e.target.parentNode.querySelector("input").value;
     setBasket((prevValue) => prevValue + 1);
     const priceToBeSet =
@@ -25,25 +27,28 @@ export default function RouteSwitch() {
     };
     for (let i = itemsInBasket.length - 1; i >= 0; --i) {
       if (itemsInBasket[i].title === itemToBeAdded.title) {
-        const removedPrice = itemsInBasket[i].price;
-        const removedAmount = itemsInBasket[i].amount;
-        setTotalAmount(
-          (prevAmount) =>
-            prevAmount - removedPrice * removedAmount
-        );
-        itemsInBasket.splice(i, 1);
+        existsInBasket = true;
+        const basketCopy = itemsInBasket;
+        basketCopy[i].amount = itemToBeAdded.amount
+        console.log(basketCopy)
+        setItemsInBasket(basketCopy)
         setBasket((prevValue) => prevValue - 1);
+        setTotalAmount(
+          itemsInBasket.reduce((acc, curr) => acc + curr.amount* curr.price, 0)
+        )
       }
+    } if (existsInBasket === false) {
+      setItemsInBasket((prevBasket) => [...prevBasket, itemToBeAdded]);
+      setTotalAmount(
+        (prevAmount) =>
+          prevAmount +
+          itemToBeAdded.price * itemToBeAdded.amount
+      );
     }
-    setItemsInBasket((prevBasket) => [...prevBasket, itemToBeAdded]);
-    setTotalAmount(
-      (prevAmount) =>
-        prevAmount +
-        priceToBeSet.substring(0, priceToBeSet.indexOf(" ")) * amount
-    );
     e.target.parentNode.parentNode.querySelector("input").value = 0;
   }
   function handleItemDisplayClick(e) {
+    const updatedArray = itemsInBasket;
     const amount = e.target.parentNode.parentNode.querySelector("input").value;
     const priceToBeSet =
       e.target.parentNode.parentNode.querySelector(".itemPrice").textContent;
@@ -65,7 +70,7 @@ export default function RouteSwitch() {
           (prevAmount) =>
             prevAmount - removedPrice * removedAmount
         );
-        itemsInBasket.splice(i, 1);
+        setItemsInBasket(updatedArray.splice(i, 1));
         setBasket((prevValue) => prevValue - 1);
       }
     }
@@ -79,9 +84,7 @@ export default function RouteSwitch() {
   }
   function handleDelete(e) {
     const title = e.target.parentNode.querySelector('h4').textContent
-    console.log(title);
     const indexToBeRemoved = itemsInBasket.findIndex( item => item.title === title);
-    console.log(itemsInBasket[indexToBeRemoved]);
     const removedPrice = itemsInBasket[indexToBeRemoved].price;
     const removedAmount = itemsInBasket[indexToBeRemoved].amount;
     setTotalAmount(
@@ -89,7 +92,6 @@ export default function RouteSwitch() {
         prevAmount - removedPrice * removedAmount
     );
     const updatedArray = itemsInBasket.filter(item => item.title !== title);
-    console.log(updatedArray)
     setItemsInBasket(updatedArray)
     setBasket((prevValue) => prevValue - 1);
   }
