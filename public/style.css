@@ -113,6 +113,7 @@ a {
     height: fit-content;
     display: flex;
     gap: 1em;
+    margin-bottom: 0.5em;
 }
 
 .item-amount input {
@@ -146,6 +147,18 @@ a {
     transition: background-color 0.3s ease-in;
 }
 
+.plus-minus-buttons > *:not(:hover) {
+    border-radius: 50%;
+    height: 25px;
+    width: 25px;
+    background-color: transparent;
+    -webkit-transition: background-color 0.3s ease-in;
+    -moz-transition: background-color 0.3s ease-in;
+    -ms-transition: background-color 0.3s ease-in;
+    -o-transition: background-color 0.3s ease-in;
+    transition: background-color 0.3s ease-in;
+}
+
 .item-amount > button {
     height: 1.5em;
     width: 6em;
@@ -161,8 +174,18 @@ a {
     gap: 2em;
 }
 
+.all-basket {
+    display: flex;
+    flex-direction: column;
+}
+
 .basket-main {
     font-family: 'Poppins', sans-serif;
+}
+
+.basket-checkout {
+    display: flex;
+    gap: 10em;
 }
 
 .basket-main > a {
@@ -223,6 +246,59 @@ a {
 
 .delete-button:hover {
     cursor: pointer;
+}
+
+.checkout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: transparent;
+    width: 25em;
+    padding: 1em;
+    border: 1px dashed black;
+}
+
+.checkout > * {
+    border-style: none;
+    margin-bottom: 1em;
+}
+
+.agree-field > legend {
+    margin-bottom: 2em;
+}
+
+.agree-field > input {
+    margin-right: 1em;
+}
+
+.payment-button {
+    margin-top: 2em;
+    display: flex;
+    height: 10%;
+    width: 20%;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2em;
+    background-color: white;
+}
+
+.payment-button:hover {
+    border-radius: 2em;
+    background-color: blueviolet;
+    -webkit-transition: background-color 0.3s ease-in;
+    -moz-transition: background-color 0.3s ease-in;
+    -ms-transition: background-color 0.3s ease-in;
+    -o-transition: background-color 0.3s ease-in;
+    transition: background-color 0.3s ease-in;
+}
+
+.payment-button:not(:hover) {
+    border-radius: 2em;
+    -webkit-transition: background-color 0.3s ease-in;
+    -moz-transition: background-color 0.3s ease-in;
+    -ms-transition: background-color 0.3s ease-in;
+    -o-transition: background-color 0.3s ease-in;
+    transition: background-color 0.3s ease-in;
 }
 
 .hide {

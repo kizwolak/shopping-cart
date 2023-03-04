@@ -1,5 +1,6 @@
 import React from "react";
 import Navbar from "./Navbar";
+import { Link } from "react-router-dom";
 
 export default function ItemDisplay(props) {
     const basket = props.basket
@@ -7,6 +8,9 @@ export default function ItemDisplay(props) {
     return (
         <>
             <Navbar basket={basket} />
+            <Link to={{pathname:`/`}}>
+                    <p className="shop-link">← Go back to the main page</p>
+            </Link>
             <div className="item-display">
                 <img src={props.item.image} alt='item' />
                 <div className="item-display-desc">

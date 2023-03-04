@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "./Navbar";
 import { Link } from "react-router-dom";
+import Checkout from "./Checkout";
 
 export default function Basket(props) {
     const generateItems = props.itemsInBasket.map(item => {
@@ -16,18 +17,21 @@ export default function Basket(props) {
         )
     })
     return (
-        <>
-            <div className="basket-main">
-                <Navbar basket = {props.basket}/>
-                <Link to={{pathname:`/`}}>
-                    <p className="shop-link">← Go back to the main page</p>
-                </Link>
-                {props.itemsInBasket.length < 1 && <h1 className="empty-basket">The basket is empty - come on, go add something!</h1>} 
-                <div className="items">
-                    {generateItems}
+        <div className="all-basket">
+            <Navbar basket = {props.basket}/>
+            <div className="basket-checkout">
+                <div className="basket-main">
+                    <Link to={{pathname:`/`}}>
+                        <p className="shop-link">← Go back to the main page</p>
+                    </Link>
+                    {props.itemsInBasket.length < 1 && <h1 className="empty-basket">The basket is empty - come on, go add something!</h1>} 
+                    <div className="items">
+                        {generateItems}
+                    </div>
+                    <p className="basket-total">Total: {props.totalAmount} USD</p>
                 </div>
-                <p className="basket-total">Total: {props.totalAmount} USD</p>
+                <Checkout />
             </div>
-        </>
+        </div>
     )
 }
