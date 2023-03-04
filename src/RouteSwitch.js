@@ -7,7 +7,6 @@ import ItemDisplay from "./components/ItemDisplay";
 
 export default function RouteSwitch() {
   const [itemsInBasket, setItemsInBasket] = useState([]);
-  const basketCopy = itemsInBasket;
   const [basket, setBasket] = React.useState(0);
   const [totalAmount, setTotalAmount] = React.useState(0);
   function handleItemClick(e) {
@@ -34,7 +33,7 @@ export default function RouteSwitch() {
         setItemsInBasket(basketCopy)
         setBasket((prevValue) => prevValue - 1);
         setTotalAmount(
-          itemsInBasket.reduce((acc, curr) => acc + curr.amount* curr.price, 0)
+        itemsInBasket.reduce((acc, curr) => acc + curr.amount* curr.price, 0)
         )
       }
     } if (existsInBasket === false) {
@@ -48,8 +47,7 @@ export default function RouteSwitch() {
     e.target.parentNode.parentNode.querySelector("input").value = 0;
   }
   function handleItemDisplayClick(e) {
-    const updatedArray = itemsInBasket;
-    const amount = e.target.parentNode.parentNode.querySelector("input").value;
+    let existsInBasket = false;
     const priceToBeSet =
       e.target.parentNode.parentNode.querySelector(".itemPrice").textContent;
     const itemToBeAdded = {
@@ -64,22 +62,26 @@ export default function RouteSwitch() {
     };
     for (let i = itemsInBasket.length - 1; i >= 0; --i) {
       if (itemsInBasket[i].title === itemToBeAdded.title) {
-        const removedPrice = itemsInBasket[i].price;
-        const removedAmount = itemsInBasket[i].amount;
-        setTotalAmount(
-          (prevAmount) =>
-            prevAmount - removedPrice * removedAmount
-        );
-        setItemsInBasket(updatedArray.splice(i, 1));
+        existsInBasket = true;
+        const basketCopy = itemsInBasket;
+        basketCopy[i].amount = itemToBeAdded.amount
+        console.log(basketCopy)
+        setItemsInBasket(basketCopy)
         setBasket((prevValue) => prevValue - 1);
+        setTotalAmount(
+        itemsInBasket.reduce((acc, curr) => acc + curr.amount* curr.price, 0)
+        )
+        setBasket((prevValue) => prevValue + 1);
       }
+    } if (existsInBasket === false) {
+      setBasket((prevValue) => prevValue + 1);
+      setItemsInBasket((prevBasket) => [...prevBasket, itemToBeAdded]);
+      setTotalAmount(
+        (prevAmount) =>
+          prevAmount +
+          itemToBeAdded.price * itemToBeAdded.amount
+      );
     }
-    setItemsInBasket((prevBasket) => [...prevBasket, itemToBeAdded]);
-    setTotalAmount(
-      (prevAmount) =>
-        prevAmount +
-        priceToBeSet.substring(0, priceToBeSet.indexOf(" ")) * amount
-    );
     e.target.parentNode.parentNode.querySelector("input").value = 0;
   }
   function handleDelete(e) {
