@@ -221,6 +221,10 @@ a {
     font-size: 2em;
 }
 
+.delete-button:hover {
+    cursor: pointer;
+}
+
 .hide {
     -webkit-animation: fadeinout .3s linear forwards;
     animation: fadeinout .3s linear forwards;

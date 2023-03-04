@@ -10,7 +10,7 @@ export default function Basket(props) {
                 <div className="item-in-basket">
                     <h4>{item.title}</h4>
                     <h2>Quantity: {item.amount}</h2>
-                    <div onClick={props.handleDelete}>❌ Remove from basket</div>
+                    <div onClick={props.handleDelete} className='delete-button'>❌ Remove from basket</div>
                 </div>
             </div>
         )

@@ -80,10 +80,16 @@ export default function RouteSwitch() {
   function handleDelete(e) {
     const title = e.target.parentNode.querySelector('h4').textContent
     console.log(title);
-    const updatedArray = itemsInBasket.filter(function ( obj ) {
-      console.log(obj.title);
-      return obj.title !== title;
-    })
+    const indexToBeRemoved = itemsInBasket.findIndex( item => item.title === title);
+    console.log(itemsInBasket[indexToBeRemoved]);
+    const removedPrice = itemsInBasket[indexToBeRemoved].price;
+    const removedAmount = itemsInBasket[indexToBeRemoved].amount;
+    setTotalAmount(
+      (prevAmount) =>
+        prevAmount - removedPrice * removedAmount
+    );
+    const updatedArray = itemsInBasket.filter(item => item.title !== title);
+    console.log(updatedArray)
     setItemsInBasket(updatedArray)
     setBasket((prevValue) => prevValue - 1);
   }
