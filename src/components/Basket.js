@@ -1,8 +1,8 @@
 import React from "react";
 import Navbar from "./Navbar";
+import { Link } from "react-router-dom";
 
 export default function Basket(props) {
-    console.log(props.itemsInBasket);
     const generateItems = props.itemsInBasket.map(item => {
         return (
             <div className="basket-item" key={item.name}>
@@ -18,6 +18,10 @@ export default function Basket(props) {
         <>
             <div className="basket-main">
                 <Navbar basket = {props.basket}/>
+                <Link to={{pathname:`/`}}>
+                    <p className="shop-link">← Go back to the main page</p>
+                </Link>
+                {props.itemsInBasket.length < 1 && <h1 className="empty-basket">The basket is empty - come on, go add something!</h1>} 
                 <div className="items">
                     {generateItems}
                 </div>

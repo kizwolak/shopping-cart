@@ -41,12 +41,14 @@ a {
 
 .cart {
     display: flex;
+    align-items: center;
+    justify-content: center;
     flex-direction: row;
     gap: 1em;
     position: absolute;
     top: 40%;
-    right: 20em;
-    height: 1em;
+    right: 7em;
+    font-size: 3em;
 }
 .basket-img > * {
     height: 1em;
@@ -136,6 +138,22 @@ a {
     font-family: 'Poppins', sans-serif;
 }
 
+.basket-main > a {
+    display: block;
+    width: fit-content
+}
+
+.shop-link {
+    text-decoration: none;
+    color: rgb(238, 238, 238);
+    margin-left: 10em;
+}
+
+.empty-basket {
+    margin-left: 5em;
+    margin-top: 2em;
+}
+
 .basket-item {
     display: flex;
     gap: 3em;
@@ -176,17 +194,38 @@ a {
 }
 
 .hide {
-    opacity: 0;
-    transition: opacity 1s linear;
-    -webkit-transition: opacity 1s linear;
-    -moz-transition: opacity 1s linear;
-    -o-transition: opacity 1s linear;
+    -webkit-animation: fadeinout .3s linear forwards;
+    animation: fadeinout .3s linear forwards;
+    position: absolute;
+}
+
+@-webkit-keyframes fadeinout {
+    0% { opacity: 0.6; }
+    50% { opacity: 0.2; }
+    100% { opacity: 0; }
+}
+
+@keyframes fadeinout {
+    0% { opacity: 0.6; }
+    50% { opacity: 0.2; }
+    100% { opacity: 0; }
 }
 
 .show {
-    opacity: 1;
-    transition: opacity 1s linear;
-    -webkit-transition: opacity 1s linear;
-    -moz-transition: opacity 1s linear;
-    -o-transition: opacity 1s linear;
+    position: relative;
+    -webkit-animation: display .5s linear forwards;
+    animation: display .5s linear forwards;
+}
+
+
+@-webkit-keyframes display {
+    0% { opacity: 0.2; }
+    50% { opacity: 0.6; }
+    100% { opacity: 1; }
+}
+
+@keyframes display {
+    0% { opacity: 0.2; }
+    50% { opacity: 0.6; }
+    100% { opacity: 1; }
 }

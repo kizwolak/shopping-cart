@@ -11,14 +11,6 @@ export default function RouteSwitch() {
   const [totalAmount, setTotalAmount] = React.useState(0);
   function handleItemClick(e) {
     const amount = e.target.parentNode.querySelector("input").value;
-    if (amount < 1) {
-      const test = document.createElement('p')
-      test.innerHTML = 'test'
-      test.classList = 'hide'
-      e.target.parentNode.parentNode.appendChild(test);
-      test.classList = 'show'
-    };
-    console.log(e.target.parentNode.parentNode);
     setBasket((prevValue) => prevValue + 1);
     const priceToBeSet =
       e.target.parentNode.parentNode.querySelector(".itemPrice").textContent;
@@ -43,7 +35,6 @@ export default function RouteSwitch() {
         setBasket((prevValue) => prevValue - 1);
       }
     }
-    console.log(priceToBeSet.substring(0, priceToBeSet.indexOf(" ")) * amount);
     setItemsInBasket((prevBasket) => [...prevBasket, itemToBeAdded]);
     setTotalAmount(
       (prevAmount) =>
@@ -54,11 +45,6 @@ export default function RouteSwitch() {
   }
   function handleItemDisplayClick(e) {
     const amount = e.target.parentNode.parentNode.querySelector("input").value;
-    if (amount < 1) return;
-    setBasket((prevValue) => prevValue + 1);
-    console.log(
-      e.target.parentNode.parentNode.querySelector(".itemPrice").textContent
-    );
     const priceToBeSet =
       e.target.parentNode.parentNode.querySelector(".itemPrice").textContent;
     const itemToBeAdded = {
@@ -83,9 +69,7 @@ export default function RouteSwitch() {
         setBasket((prevValue) => prevValue - 1);
       }
     }
-    console.log(itemsInBasket);
     setItemsInBasket((prevBasket) => [...prevBasket, itemToBeAdded]);
-    console.log(priceToBeSet.substring(0, priceToBeSet.indexOf(" ")) * amount);
     setTotalAmount(
       (prevAmount) =>
         prevAmount +
@@ -160,6 +144,7 @@ export default function RouteSwitch() {
         price={item.price}
         onClick={handleItemClick}
         key={item.name}
+        itemsInBasket={itemsInBasket}
       />
     );
   });
