@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, HashRouter } from "react-router-dom";
 import Shop from "./components/Shop";
 import Basket from "./components/Basket";
 import Item from "./components/Item";
@@ -28,20 +28,19 @@ export default function RouteSwitch() {
       if (itemsInBasket[i].title === itemToBeAdded.title) {
         existsInBasket = true;
         const basketCopy = itemsInBasket;
-        basketCopy[i].amount = itemToBeAdded.amount
-        console.log(basketCopy)
-        setItemsInBasket(basketCopy)
+        basketCopy[i].amount = itemToBeAdded.amount;
+        console.log(basketCopy);
+        setItemsInBasket(basketCopy);
         setBasket((prevValue) => prevValue - 1);
         setTotalAmount(
-        itemsInBasket.reduce((acc, curr) => acc + curr.amount* curr.price, 0)
-        )
+          itemsInBasket.reduce((acc, curr) => acc + curr.amount * curr.price, 0)
+        );
       }
-    } if (existsInBasket === false) {
+    }
+    if (existsInBasket === false) {
       setItemsInBasket((prevBasket) => [...prevBasket, itemToBeAdded]);
       setTotalAmount(
-        (prevAmount) =>
-          prevAmount +
-          itemToBeAdded.price * itemToBeAdded.amount
+        (prevAmount) => prevAmount + itemToBeAdded.price * itemToBeAdded.amount
       );
     }
     e.target.parentNode.parentNode.querySelector("input").value = 0;
@@ -64,37 +63,35 @@ export default function RouteSwitch() {
       if (itemsInBasket[i].title === itemToBeAdded.title) {
         existsInBasket = true;
         const basketCopy = itemsInBasket;
-        basketCopy[i].amount = itemToBeAdded.amount
-        console.log(basketCopy)
-        setItemsInBasket(basketCopy)
+        basketCopy[i].amount = itemToBeAdded.amount;
+        console.log(basketCopy);
+        setItemsInBasket(basketCopy);
         setBasket((prevValue) => prevValue - 1);
         setTotalAmount(
-        itemsInBasket.reduce((acc, curr) => acc + curr.amount* curr.price, 0)
-        )
+          itemsInBasket.reduce((acc, curr) => acc + curr.amount * curr.price, 0)
+        );
         setBasket((prevValue) => prevValue + 1);
       }
-    } if (existsInBasket === false) {
+    }
+    if (existsInBasket === false) {
       setBasket((prevValue) => prevValue + 1);
       setItemsInBasket((prevBasket) => [...prevBasket, itemToBeAdded]);
       setTotalAmount(
-        (prevAmount) =>
-          prevAmount +
-          itemToBeAdded.price * itemToBeAdded.amount
+        (prevAmount) => prevAmount + itemToBeAdded.price * itemToBeAdded.amount
       );
     }
     e.target.parentNode.parentNode.querySelector("input").value = 0;
   }
   function handleDelete(e) {
-    const title = e.target.parentNode.querySelector('h4').textContent
-    const indexToBeRemoved = itemsInBasket.findIndex( item => item.title === title);
+    const title = e.target.parentNode.querySelector("h4").textContent;
+    const indexToBeRemoved = itemsInBasket.findIndex(
+      (item) => item.title === title
+    );
     const removedPrice = itemsInBasket[indexToBeRemoved].price;
     const removedAmount = itemsInBasket[indexToBeRemoved].amount;
-    setTotalAmount(
-      (prevAmount) =>
-        prevAmount - removedPrice * removedAmount
-    );
-    const updatedArray = itemsInBasket.filter(item => item.title !== title);
-    setItemsInBasket(updatedArray)
+    setTotalAmount((prevAmount) => prevAmount - removedPrice * removedAmount);
+    const updatedArray = itemsInBasket.filter((item) => item.title !== title);
+    setItemsInBasket(updatedArray);
     setBasket((prevValue) => prevValue - 1);
   }
   const [list, setList] = React.useState([
@@ -169,7 +166,7 @@ export default function RouteSwitch() {
     );
   });
   return (
-    <BrowserRouter>
+    <HashRouter hashType="hashbang">
       <Routes>
         <Route
           path="/"
@@ -284,6 +281,6 @@ export default function RouteSwitch() {
           }
         />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
