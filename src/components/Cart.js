@@ -5,7 +5,6 @@ export default function Cart(props) {
   const basket = props.basket;
   return (
     <div className="cart">
-      <h5>shopping cart</h5>
       <Link
         to={{ pathname: "/basket", state: { basket } }}
         className="basket-img"
