@@ -113,7 +113,7 @@ export default function RouteSwitch() {
       name: "Magical Mystery Tour",
       image: "./images/beatles.webp",
       // from https://media.revistagq.com/photos/63a85e4289428527874457de/16:9/w_1280,c_limit/beatles.jpeg
-      desc: "The Beatles are back. The hard work of our necromancers has resulted in bringing back all of the Beatles and convincing them to start an actual Magical Mystery Tour. You will travel around the most beautiful spots in the UK - Hull, Grimsby, Luton and Rhyl - and have the time of your life with the greatest band ever.",
+      desc: "The Beatles are back. Our hard and perilous work has resulted in bringing back all of the Beatles and convincing them to do an actual Magical Mystery Tour, again! You can travel around the most beautiful spots in the UK - Hull, Grimsby, Luton and Rhyl - and have the time of your life with the greatest band ever.",
       price: 500000,
     },
     {
